@@ -1,11 +1,14 @@
 #include <iostream>
-#include "Avl.hpp"
+#include "Consultas.hpp"
 
 int main(){
 
-    Avl* Arvore = new Avl;
+    Consultas* consultas = new Consultas;
 
-    delete(Arvore);
+    consultas->LerArquivo("input1.txt");
+    consultas->ImprimirLista();
+
+    delete(consultas);
 
     //std::cout << "Hello World" << std::endl;
 }

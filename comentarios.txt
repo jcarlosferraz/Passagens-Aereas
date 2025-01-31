@@ -1,0 +1,2 @@
+Ler a entrada fornecida pelo professor e armazenar os voos
+Cada voo é uma struct e cada struct deve ser armazenada em um espaço do vetor voos
