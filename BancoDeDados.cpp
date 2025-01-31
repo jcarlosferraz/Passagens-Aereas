@@ -1,17 +1,25 @@
-#include "Consultas.hpp"
+#include "BancoDeDados.hpp"
 
 
-Consultas::Consultas(){
+BancoDeDados::BancoDeDados(){
     numVoos = 0;
     voos = nullptr;
+    consultas = nullptr;
 }
-Consultas::~Consultas(){
+BancoDeDados::~BancoDeDados(){
     delete[] voos;
+    delete[] consultas;
 }
 
 
-int Consultas::LerArquivo(std::string arquivo){
+int BancoDeDados::LerArquivo(std::string arquivo){
     std::ifstream file(arquivo);
+    if(!file.is_open()){       //verificar se arquivo abriu
+        std::cout << "Erro ao abrir o arquivo " << arquivo << std::endl;
+        return -1;
+    }
+
+    
     std::string linha;
 
     int contador = 0;   //registrar em que iteração do looping nós estamos
@@ -33,16 +41,29 @@ int Consultas::LerArquivo(std::string arquivo){
         }
         else if(contador == numVoos + 2){  //leu numero de consultas
             numConsultas = std::stoi(linha);
+            consultas = new Consulta[numConsultas]; //criando vetor de consultas
         }
-        else break;
+        else{
+            std::istringstream stream(linha);  //Ler as consultas
+
+            stream >> consultas[contador - numVoos - 3].numRetornos >>
+            consultas[contador - numVoos - 3].criterioOrdenacao >> 
+            consultas[contador - numVoos - 3].expressaoLogica;
+        }
     }
 
     return 1;
 }
 
-void Consultas::ImprimirLista(){
+void BancoDeDados::ImprimirLista(){
     for(int i = 0; i < numVoos; i++){
         voos[i].ImprimirVoo();
     }
     std::cout << numConsultas << std::endl;
+}
+
+void BancoDeDados::ImprimirConsultas(){
+    for(int i = 0; i < numConsultas; i++){
+        consultas[i].ImprimirConsulta();
+    }
 }

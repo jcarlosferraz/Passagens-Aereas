@@ -1,14 +1,17 @@
 #include <iostream>
-#include "Consultas.hpp"
+#include "BancoDeDados.hpp"
 
-int main(){
+int main(int argc, char* argv[]){
 
-    Consultas* consultas = new Consultas;
+    std::string arquivo = argv[1];
 
-    consultas->LerArquivo("input1.txt");
-    consultas->ImprimirLista();
+    BancoDeDados* banco = new BancoDeDados;
 
-    delete(consultas);
+    banco->LerArquivo(arquivo);
+    banco->ImprimirLista();
+    banco->ImprimirConsultas();
+
+    delete(banco);
 
     //std::cout << "Hello World" << std::endl;
 }
