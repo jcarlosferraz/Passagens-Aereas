@@ -10,6 +10,7 @@ int main(int argc, char* argv[]){
     banco->LerArquivo(arquivo);
     banco->ImprimirLista();
     banco->ImprimirConsultas();
+    banco->ExecutarConsultas();
 
     delete(banco);
 

@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include "Avl.hpp"
 #include "Voo.hpp"
 #include "Consulta.hpp"
 #include "fstream"
@@ -25,7 +24,11 @@ public:
     int LerArquivo(std::string arquivo);
     void ImprimirLista();
     void ImprimirConsultas();
-
+    void ExecutarConsultas();
+    int* Pesquisa(std::string sigla, std::string sinal, std::string referencia);
+    int* Juncao(int* resultadoConsulta, int* resultadoFiltro);
+    void ImprimirVoo(int n);
+    
 };
 
 #endif

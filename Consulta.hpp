@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 
 class Consulta {
@@ -14,6 +15,7 @@ public:
 
     Consulta();
     void ImprimirConsulta();
+    int NumFiltros();
 };
 
 #endif
