@@ -15,10 +15,149 @@ bool Numerico(const std::string& str) {                             //verifica s
     return !str.empty() && std::all_of(str.begin(), str.end(), ::isdigit);
 }
 
-void BancoDeDados::ImprimirVoo(int n){
-    //for(int i = 0; i < numVoos; i++){
-        //if()
-    //}
+void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio){
+    int i, j, min_idx, temp;
+
+    if(criterio == "pds"){
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
+                    if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+    }
+
+    else if(criterio == "psd"){                                     //Selection Sort para ordenar
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
+                    if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+    }
+
+    else if(criterio == "dps"){
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                    if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+    }
+
+    else if(criterio == "dsp"){
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                    if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+
+    }
+
+    else if(criterio == "spd"){
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
+                    if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+
+    }
+
+    else{    //criterio == sdp
+
+        for (i = 0; resultadoConsulta[i] != -1; i++) {
+            min_idx = i;
+            for (j = i + 1; resultadoConsulta[j] != -1; j++) {
+
+                if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
+                    if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                        min_idx = j;
+                    }
+                }
+
+                if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                    min_idx = j;
+                }
+            }
+            // Troca os índices no vetor A
+            temp = resultadoConsulta[i];
+            resultadoConsulta[i] = resultadoConsulta[min_idx];
+            resultadoConsulta[min_idx] = temp;
+        }
+
+    }
 }
 
 int BancoDeDados::LerArquivo(std::string arquivo){
@@ -71,10 +210,10 @@ void BancoDeDados::ImprimirLista(){
     std::cout << numConsultas << std::endl;
 }
 
-void BancoDeDados::ImprimirConsultas(){
-    for(int i = 0; i < numConsultas; i++){
-        consultas[i].ImprimirConsulta();
-    }
+void BancoDeDados::ImprimirConsultas(int i){
+
+    consultas[i].ImprimirConsulta();
+    
 }
 
 int* BancoDeDados::Pesquisa(std::string sigla, std::string sinal, std::string referencia){
@@ -310,7 +449,7 @@ int* BancoDeDados::Juncao(int* resultadoConsulta, int* resultadoFiltro){
 void BancoDeDados::ExecutarConsultas(){
     for(int i = 0; i < numConsultas; i++){                          //vamos iterar sobre cada uma das consultas
 
-        std::cout << "Consulta " << (i + 1) << ":" << std::endl;
+        ImprimirConsultas(i);
 
         int carac = 0;                                              // Guarda a posição do caractere que estamos analisando
         
@@ -378,16 +517,8 @@ void BancoDeDados::ExecutarConsultas(){
             if(numFiltrosAnalisados == 0) resultadoConsulta = resultadoFiltro;
 
 
+            //std::cout << "Filtro " << (numFiltrosAnalisados + 1) << std::endl;
 
-
-            std::cout << "Filtro " << (numFiltrosAnalisados + 1) << std::endl;
-
-            for(int k = 0; resultadoFiltro[k] != -1; k++){
-                std::cout << resultadoFiltro[k] << " ";
-            }
-            std::cout << std::endl;
-            
-            
             
             resultadoConsulta = Juncao(resultadoConsulta, resultadoFiltro);
             numFiltrosAnalisados++;
@@ -396,15 +527,16 @@ void BancoDeDados::ExecutarConsultas(){
         }
 
         
-        std::cout << "Junção: " << std::endl;
+        OrdenarResultado(resultadoConsulta, consultas[i].criterioOrdenacao);
+
+        //std::cout << "Junção: " << std::endl;
 
         for(int k = 0; resultadoConsulta[k] != -1; k++){
             voos[resultadoConsulta[k]].ImprimirVoo();
-            //std::cout << " ";
+            if((k + 1) == consultas[i].numRetornos) break;
         }
 
         //delete[] resultadoConsulta;
-        std::cout << std::endl;
     }
 }
 

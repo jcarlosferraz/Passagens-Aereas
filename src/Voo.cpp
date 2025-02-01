@@ -31,8 +31,7 @@ Voo::~Voo(){
 
 void Voo::ImprimirVoo(){
     std::cout << origem << " " << destino << " " << preco << " " << assentos <<
-     " " << dataPartida << " " << dataChegada << " " << numParadas << " " << 
-     duracaoTotal << std::endl;
+     " " << dataPartida << " " << dataChegada << " " << numParadas << std::endl;
 }
 
 void Voo::DefinirTempoVoo(){

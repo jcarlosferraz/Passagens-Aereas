@@ -8,8 +8,8 @@ int main(int argc, char* argv[]){
     BancoDeDados* banco = new BancoDeDados;
 
     banco->LerArquivo(arquivo);
-    banco->ImprimirLista();
-    banco->ImprimirConsultas();
+    //banco->ImprimirLista();
+    //banco->ImprimirConsultas();
     banco->ExecutarConsultas();
 
     delete(banco);

@@ -23,11 +23,11 @@ public:
 
     int LerArquivo(std::string arquivo);
     void ImprimirLista();
-    void ImprimirConsultas();
+    void ImprimirConsultas(int i);
     void ExecutarConsultas();
     int* Pesquisa(std::string sigla, std::string sinal, std::string referencia);
     int* Juncao(int* resultadoConsulta, int* resultadoFiltro);
-    void ImprimirVoo(int n);
+    void OrdenarResultado(int* resultadoConsulta, std::string criterio);
     
 };
 
