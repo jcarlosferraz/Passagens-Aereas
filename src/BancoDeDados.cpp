@@ -42,7 +42,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
-                    if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+
+                    if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                        if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
                         min_idx = j;
                     }
                 }
@@ -65,7 +72,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
-                    if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+
+                    if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
+                        if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
                         min_idx = j;
                     }
                 }
@@ -88,7 +102,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
-                    if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+
+                    if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
+                        if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
                         min_idx = j;
                     }
                 }
@@ -111,7 +132,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
-                    if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
+
+                    if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
+                        if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].numParadas < voos[resultadoConsulta[min_idx]].numParadas) {
                         min_idx = j;
                     }
                 }
@@ -135,7 +163,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
-                    if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+
+                    if (voos[resultadoConsulta[j]].preco == voos[resultadoConsulta[min_idx]].preco) {
+                        if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
                         min_idx = j;
                     }
                 }
@@ -159,7 +194,14 @@ void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio
             for (j = i + 1; resultadoConsulta[j] != -1; j++) {
 
                 if (voos[resultadoConsulta[j]].numParadas == voos[resultadoConsulta[min_idx]].numParadas) {
-                    if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
+
+                    if (voos[resultadoConsulta[j]].duracaoTotal == voos[resultadoConsulta[min_idx]].duracaoTotal) {
+                        if (voos[resultadoConsulta[j]].preco < voos[resultadoConsulta[min_idx]].preco) {
+                            min_idx = j;
+                        }
+                    }
+
+                    else if (voos[resultadoConsulta[j]].duracaoTotal < voos[resultadoConsulta[min_idx]].duracaoTotal) {
                         min_idx = j;
                     }
                 }
