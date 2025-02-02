@@ -11,12 +11,29 @@ BancoDeDados::~BancoDeDados(){
     delete[] consultas;
 }
 
-bool Numerico(const std::string& str) {                             //verifica se determinada string é numerica
-    return !str.empty() && std::all_of(str.begin(), str.end(), ::isdigit);
+bool Numerico(const std::string& str) {
+    if (str.empty()) return false;
+
+    bool ponto = false;
+    bool sinal = false;
+
+    for (size_t i = 0; i < str.size(); ++i) {
+        if (i == 0 && (str[i] == '-' || str[i] == '+')) {  
+            sinal = true; // Permite um único sinal no início
+        } else if (str[i] == '.') {
+            if (ponto) return false; // Se já havia um ponto antes, é inválido
+            ponto = true;
+        } else if (!isdigit(str[i])) {
+            return false; // Qualquer caractere não numérico e não permitido falha
+        }
+    }
+
+    return str.size() > (sinal ? 1 : 0); // Evita que apenas "-" ou "." sejam válidos
 }
 
 void BancoDeDados::OrdenarResultado(int* resultadoConsulta, std::string criterio){
     int i, j, min_idx, temp;
+
 
     if(criterio == "pds"){
 
@@ -254,6 +271,7 @@ int* BancoDeDados::Pesquisa(std::string sigla, std::string sinal, std::string re
 
             for(int i = 0; i < numVoos; i++){
                 if(voos[i].preco <= referenciaNumero){
+            
                     contador ++;
                     temp = (int*)realloc(vetor, contador * sizeof(int));
                     temp[contador - 1] = i;
@@ -405,6 +423,7 @@ int* BancoDeDados::Pesquisa(std::string sigla, std::string sinal, std::string re
         }
     }
 
+
     contador ++;
     temp = (int*)realloc(vetor, contador * sizeof(int));
     temp[contador - 1] = -1;
@@ -516,20 +535,13 @@ void BancoDeDados::ExecutarConsultas(){
             resultadoFiltro = Pesquisa(sigla, sinal, referencia);
             if(numFiltrosAnalisados == 0) resultadoConsulta = resultadoFiltro;
 
-
-            //std::cout << "Filtro " << (numFiltrosAnalisados + 1) << std::endl;
-
-            
             resultadoConsulta = Juncao(resultadoConsulta, resultadoFiltro);
             numFiltrosAnalisados++;
             free(resultadoFiltro);
             if(numFiltrosAnalisados == numFiltros) break;
         }
-
-        
+    
         OrdenarResultado(resultadoConsulta, consultas[i].criterioOrdenacao);
-
-        //std::cout << "Junção: " << std::endl;
 
         for(int k = 0; resultadoConsulta[k] != -1; k++){
             voos[resultadoConsulta[k]].ImprimirVoo();
